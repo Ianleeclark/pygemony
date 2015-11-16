@@ -25,16 +25,13 @@ Then, you need to go into the directory and run: python setup.py install
 
 After that, you're good to go!.
 
-Go ahead and run it like this:
+Then, go ahead and run pygemony.py
 
-pygemony [--user/-u] <Your Github User> [--token/-t] <Your Github Api token>
-[--owner/-o] <The remote Owner's github name> [--repo/-r] <The remote repo name>
-
-So, for Pygemony, it would look like this:
-pygemony -u GrappigPanda -t <HAHA, nope> -o GrappigPanda -r Pygemony
-
+LIVE EXAMPLES:
+http://github.com/GrappigPanda/pygemony/issues
+http://github.com/GrappigPanda/NeuralNetworkCPP/issues
 
 As this project currently stands, I do NOT consider it complete and I consider
 it in very early alpha stages. I have a list of issues available on the
-project's github page (http://github.com/GrappigPanda/pygemony) which I'm more
+project's github page (<a href="http://github.com/GrappigPanda/pygemony">Pygemony</a>) which I'm more
 than happy to receive help with.
