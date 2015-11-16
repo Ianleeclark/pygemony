@@ -8,11 +8,13 @@ from languages import *
 
 
 class Pygemony:
-    def __init__(self, language):
+    def __init__(self, user=None, token=None, owner=None, repo=None):
         # todo_found contains a list of the following layout:
         # ['file_path', 'line_number', 'todo_message', 'md5 of todo']
         self.todo_found = []
-        self.language = language
+        self.github = GithubAPIManager(user, token, owner, repo)
+        # TODO(ian): Add support for parsing more than one file type
+        self.language = self.lookup_language()
 
     def find_end_comment(self, f):
         todo_content = []
@@ -30,11 +32,13 @@ class Pygemony:
             count += 1
 
     def _sanitize_todo_line(self, lines):
+        # TODO(ian): Parse multi-line TODOs
         # for line in lines
         lines = lines.replace('\n', '')
         # for char in line:
         while '    ' in lines or '\t' in lines:
             lines = lines.replace('    ', '')
+        # TODO(ian): Remove comment starts "#" "//" "/*"
         return lines
 
     @staticmethod
@@ -88,14 +92,12 @@ class Pygemony:
 
         return files_found
 
-    def run(self, user, token, owner, repo):
+    def run(self):
         self.file_handler()
+        self.github.commit(self.todo_found)
 
-        github = GithubAPIManager(user, token, owner, repo)
-
-        github.commit(self.todo_found)
-
-if __name__ == "__main__":
-    language = LanguagePython()
-    pygemony = Pygemony(language)
-    pygemony.run()
+    def lookup_language(self):
+        lang_map = {'cpp': LanguageCPP,
+                    'python': LanguagePython}
+        langs = [i for i in self.github.get_languages()]
+        return lang_map[str(langs[0][0]).lower()]()
