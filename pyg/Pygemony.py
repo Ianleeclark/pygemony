@@ -38,7 +38,7 @@ class Pygemony:
         # for char in line:
         while '    ' in lines or '\t' in lines:
             lines = lines.replace('    ', '')
-        # TODO(ian): Remove comment starts "#" "//" "/*"
+        lines = lines.replace(self.language.single_comment, '')
         return lines
 
     @staticmethod
@@ -74,7 +74,7 @@ class Pygemony:
     def file_handler(self):
         # First we need to remove any non-text files
         files_found = self.find_all_files('./')
-        print files_found
+        # TODO(ian): filter() over files to parse out by mimetype
         for file_ in files_found:
             file_type = detect_mimetype(file_)
             # We're looking for startswith('text/'). Mimetype returns
