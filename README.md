@@ -32,6 +32,7 @@ Then, go ahead and run pygemony.py
 
 ### LIVE EXAMPLES:
 http://github.com/GrappigPanda/pygemony/issues
+
 http://github.com/GrappigPanda/NeuralNetworkCPP/issues
 
 As this project currently stands, I do NOT consider it complete and I consider
