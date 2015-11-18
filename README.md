@@ -1,4 +1,4 @@
-Pygemony:
+# Pygemony
 
 If you're anything like me, you're lazy... and then you're forgetful.
 By that I mean that you mean to write things (in the future), so you write down
@@ -13,25 +13,31 @@ what I forgot to implement.
 Moreover, Pygemony won't spam your issues page, as it hashes and saves these
 stored todos into a .pyg-submitted into your git repository.
 
-Running pygemony is really simple!
+### Running pygemony is really simple!
 
-All you have to do is download the tarball (the .tar.gz file) and extract it.
+All you have to do is [download the archive] (the .zip file) and extract it.
 
 
 On Windows, I'd advise you to go ahead and use 7zip or winrar--whichever you
 prefer.
 
-Then, you need to go into the directory and run: python setup.py install
+Then, you need to go into the directory and run:
+```python
+python setup.py install
+```
 
-After that, you're good to go!.
+After that, you're good to go!
 
 Then, go ahead and run pygemony.py
 
-LIVE EXAMPLES:
+### LIVE EXAMPLES:
 http://github.com/GrappigPanda/pygemony/issues
 http://github.com/GrappigPanda/NeuralNetworkCPP/issues
 
 As this project currently stands, I do NOT consider it complete and I consider
 it in very early alpha stages. I have a list of issues available on the
-project's github page (<a href="http://github.com/GrappigPanda/pygemony">Pygemony</a>) which I'm more
+project's github page [Pygemony] which I'm more
 than happy to receive help with.
+
+[Pygemony]: http://github.com/GrappigPanda/pygemony
+[download the archive]: https://github.com/GrappigPanda/pygemony/archive/master.zip
