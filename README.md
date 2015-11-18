@@ -13,7 +13,7 @@ what I forgot to implement.
 Moreover, Pygemony won't spam your issues page, as it hashes and saves these
 stored todos into a .pyg-submitted into your git repository.
 
-Runniny pygemony is really simple!
+Running pygemony is really simple!
 
 All you have to do is download the tarball (the .tar.gz file) and extract it.
 
