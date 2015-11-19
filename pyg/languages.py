@@ -15,3 +15,9 @@ class LanguagePython:
         # How does iron python, stackless, &c do it?
         self.file_exts = ['*.py']
 
+
+class LanguageJavascript:
+    def __init__(self):
+        self.single_comment = '//'
+        self.multi_comment = ['/*', '*/']
+        self.file_exsts = ['*.js', '.node']
