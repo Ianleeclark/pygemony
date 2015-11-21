@@ -60,9 +60,10 @@ class Pygemony:
                                             self.hash_todo(todo_content)])
 
     def parse_by_extension(self, files):
-        for ext in self.language.file_exts:
-            for file_ in filter(files, ext):
-                yield file_
+        for lang in self.language:
+            for ext in lang.file_exts:
+                for file_ in filter(files, ext):
+                    yield file_
 
     def find_all_files(self, root):
         files_found = []
@@ -98,6 +99,8 @@ class Pygemony:
 
     def lookup_language(self):
         lang_map = {'cpp': LanguageCPP,
-                    'python': LanguagePython}
+                    'python': LanguagePython,
+                    'javascript': LanguageJavascript,
+                    'c': LanguageC}
         langs = [i for i in self.github.get_languages()]
         return lang_map[str(langs[0][0]).lower()]()
