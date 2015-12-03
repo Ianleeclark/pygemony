@@ -31,9 +31,9 @@ After that, you're good to go!
 Then, go ahead and run pygemony.py
 
 ### LIVE EXAMPLES:
-http://github.com/GrappigPanda/pygemony/issues
+https://github.com/GrappigPanda/pygemony/issues
 
-http://github.com/GrappigPanda/NeuralNetworkCPP/issues
+https://github.com/GrappigPanda/GithubTODOScraper/issues
 
 As this project currently stands, I do NOT consider it complete and I consider
 it in very early alpha stages. I have a list of issues available on the
