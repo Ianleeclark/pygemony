@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-__author__ = 'Ian'
-
-
 from pyg.Pygemony import Pygemony
 from pyg.utils import get_git_info
 
@@ -9,6 +5,7 @@ from pyg.utils import get_git_info
 def run():
     user = raw_input("Please input your Github Username: ")
     token = raw_input("Please input your Github API Token: ")
+
     owner, repo = get_git_info()
     return {'user': user, 'token': token, 'owner': owner, 'repo': repo}
 

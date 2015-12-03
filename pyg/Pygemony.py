@@ -32,13 +32,12 @@ class Pygemony:
             count += 1
 
     def _sanitize_todo_line(self, lines):
-        # TODO(ian): Parse multi-line TODOs
-        # for line in lines
+        # We're mainly aiming to remove newlines and tab cahracters here.
         lines = lines.replace('\n', '')
-        # for char in line:
         while '    ' in lines or '\t' in lines:
             lines = lines.replace('    ', '')
-        lines = lines.replace(self.language.single_comment, '')
+        for lang in self.language:
+            lines = lines.replace(lang.single_comment, '')
         return lines
 
     @staticmethod
@@ -103,4 +102,4 @@ class Pygemony:
                     'javascript': LanguageJavascript,
                     'c': LanguageC}
         langs = [i for i in self.github.get_languages()]
-        return lang_map[str(langs[0][0]).lower()]()
+        return [lang_map[str(langs[0][0]).lower()]()]
