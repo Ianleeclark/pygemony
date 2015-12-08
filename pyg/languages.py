@@ -27,4 +27,5 @@ class LanguageJavascript:
     def __init__(self):
         self.single_comment = '//'
         self.multi_comment = ['/*', '*/']
-        self.file_exsts = ['*.js', '.node']
+        self.file_exts = ['*.js', '.node']
+        self.ignore = ['node_modules']

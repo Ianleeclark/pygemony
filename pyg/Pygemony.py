@@ -17,6 +17,7 @@ class Pygemony:
         self.language = self.lookup_language()
 
     def find_end_comment(self, f):
+        # TODO(ian): Remove this function as we no longer support multiline TODO
         todo_content = []
         x = f
         count = 0
@@ -32,7 +33,7 @@ class Pygemony:
             count += 1
 
     def _sanitize_todo_line(self, lines):
-        # We're mainly aiming to remove newlines and tab cahracters here.
+        # We're mainly aiming to remove newlines and tab characters here.
         lines = lines.replace('\n', '')
         while '    ' in lines or '\t' in lines:
             lines = lines.replace('    ', '')
@@ -50,13 +51,7 @@ class Pygemony:
         for i, line in enumerate(f.readlines()):
             if "TODO" in line:
                 line = self._sanitize_todo_line(line)
-                self.todo_found.append([file_, i, line,
-                                        self.hash_todo(line)])
-            elif "TODO" in line and self.language.multi_comment[0]:
-                todo_content = self.find_end_comment(f)
-                if todo_content:
-                    self.todo_found.append([file_, i, line,
-                                            self.hash_todo(todo_content)])
+                self.todo_found.append([file_, i, line, self.hash_todo(line)])
 
     def parse_by_extension(self, files):
         for lang in self.language:
@@ -87,8 +82,7 @@ class Pygemony:
                 with open(file_, 'r') as f:
                     self.parse_for_todo(f, file_)
             except IOError as e:
-                print "Failed to open file {} with error of: {}".format(file_,
-                                                                        e)
+                print "Failed to open file {} with error of {}".format(file_, e)
 
         return files_found
 

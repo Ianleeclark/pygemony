@@ -12,6 +12,9 @@ def run():
 if __name__ == "__main__":
     args = run()
 
+    print 'test'
+
     pygemony = Pygemony(args['user'], args['token'],
                         args['owner'], args['repo'])
+    print 'test2'
     pygemony.run()
