@@ -29,3 +29,11 @@ class LanguageJavascript:
         self.multi_comment = ['/*', '*/']
         self.file_exts = ['*.js', '.node']
         self.ignore = ['node_modules']
+
+class LanguageGo:
+    def __init__(self):
+        self.single_comment = '//'
+        self.multi_comment = ['/*', '*/']
+        self.file_exts = ['*.go']
+        self.ignore = []
+

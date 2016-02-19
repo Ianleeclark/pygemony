@@ -74,8 +74,11 @@ class Pygemony:
             file_type = detect_mimetype(file_)
             # We're looking for startswith('text/'). Mimetype returns
             # None if it can't determine file type. Remove if either is True
-            if file_type[0].startswith("application") or file_type[0] is None:
-                files_found.remove(file_)
+            try:
+                if file_type[0].startswith("application") or file_type[0] is None:
+                    files_found.remove(file_)
+            except (AttributeError, IndexError) as e:
+                print "Failed to open file {} with error of {}".format(file_, e)
 
         for file_ in files_found:
             try:
@@ -94,6 +97,7 @@ class Pygemony:
         lang_map = {'cpp': LanguageCPP,
                     'python': LanguagePython,
                     'javascript': LanguageJavascript,
-                    'c': LanguageC}
+                    'c': LanguageC,
+                    'go': LanguageGo}
         langs = [i for i in self.github.get_languages()]
         return [lang_map[str(langs[0][0]).lower()]()]
