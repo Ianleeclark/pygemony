@@ -12,12 +12,19 @@ class GithubAPIManager:
         self.token = token
         self.gh = self.login()
         if self.gh is None:
-            raise "Failed to login"
+            raise Exception("Failed to login")
 
         # Remote repo stuff
-        self.owner = owner
-        self.repo = repo
-        self.curr_repo = self.gh.repository(owner, repo)
+        if not owner:
+            self.owner = self.get_owner() 
+        else:
+            self.owner = owner
+        if not repo:
+            self.repo = self.get_repo()
+        else:
+            self.repo = repo
+        self.curr_repo = self.gh.repository(str(self.owner), str(self.repo))
+        
 
     def login(self):
         try:
@@ -53,7 +60,6 @@ class GithubAPIManager:
                 self.curr_repo.create_issue(title=issue[2],
                                         body=self._construct_issue_body(issue))
 
-    # TODO(ian): Convert _construct* to @staticmethod where applicable?
     @staticmethod
     def _construct_issue_body(issue):
         sz = 'File Location: {}<br>Line Number: {}'.format(issue[0], issue[1])
@@ -64,3 +70,16 @@ class GithubAPIManager:
     def get_languages(self):
         for i in self.curr_repo.iter_languages():
             yield i
+
+    def _get_repo_owner(self):
+        # TODO(ian): Remove the magic directory!
+        with open('./.git/config', 'r+') as f:
+            for line in f.readlines():
+                if 'url = ' in line:
+                    return line.split('github.com/')[-1].split('/')
+
+    def get_repo(self):
+        return self._get_repo_owner()[1]
+
+    def get_owner(self):
+        return self._get_repo_owner()[0]
