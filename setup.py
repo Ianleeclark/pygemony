@@ -7,6 +7,7 @@ def read(fname):
 
 setup(
     name='pygemony',
+    install_requires=read('requirements.txt'),
     version='0.0.1a',
     description=('Parse TODO from github directory'),
     license="MIT",
