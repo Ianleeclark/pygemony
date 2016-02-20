@@ -42,16 +42,16 @@ class Pygemony:
         return lines
 
     @staticmethod
-    def hash_todo(todo_content):
+    def hash_todo(todo_content, line_number, file_name):
         m = hashlib.md5()
-        m.update(todo_content)
+        m.update('{}-{}-{}'.format(todo_content, line_number, file_name))
         return str(m.hexdigest())
 
     def parse_for_todo(self, f, file_):
         for i, line in enumerate(f.readlines()):
             if "TODO" in line:
                 line = self._sanitize_todo_line(line)
-                self.todo_found.append([file_, i, line, self.hash_todo(line)])
+                self.todo_found.append([file_, i, line, self.hash_todo(line, i, file_)])
 
     def parse_by_extension(self, files):
         for lang in self.language:
