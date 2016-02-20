@@ -11,6 +11,7 @@ class Pygemony:
     def __init__(self, user=None, token=None, owner=None, repo=None):
         # todo_found contains a list of the following layout:
         # ['file_path', 'line_number', 'todo_message', 'md5 of todo']
+        self.blacklist = ['build', '.git']
         self.todo_found = []
         self.github = GithubAPIManager(user, token, owner, repo)
         # TODO(ian): Add support for parsing more than one file type
@@ -62,8 +63,11 @@ class Pygemony:
     def find_all_files(self, root):
         files_found = []
         for roots, dirs, files in walk(root):
-            for file_ in self.parse_by_extension(files):
-                files_found.append(path.join(roots, file_))
+            base_dir = roots.split('/')[1]
+            if base_dir not in self.blacklist:
+                print roots
+                for file_ in self.parse_by_extension(files):
+                    files_found.append(path.join(roots, file_))
         return files_found
 
     def file_handler(self):
@@ -100,4 +104,6 @@ class Pygemony:
                     'c': LanguageC,
                     'go': LanguageGo}
         langs = [i for i in self.github.get_languages()]
+        for i in langs:
+            self.blacklist.append(lang_map[str(langs[0][0]).lower()]().ignore_dir)
         return [lang_map[str(langs[0][0]).lower()]()]

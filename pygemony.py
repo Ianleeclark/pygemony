@@ -1,18 +1,21 @@
+import argparse
+
 from pyg.Pygemony import Pygemony
 from pyg.utils import get_git_info
 
-
-def run():
-    user = raw_input("Please input your Github Username: ")
-    token = raw_input("Please input your Github API Token: ")
-
-    owner, repo = get_git_info()
-    return {'user': user, 'token': token, 'owner': owner, 'repo': repo}
-
 if __name__ == "__main__":
-    args = run()
+    parser = argparse.ArgumentParser()
 
+    parser.add_argument('--token', required=True)
+    parser.add_argument('--username', required=True)
+    parser.add_argument('--owner')
+    parser.add_argument('--repo')
 
-    pygemony = Pygemony(args['user'], args['token'],
-                        args['owner'], args['repo'])
+    args = parser.parse_args()
+    args = vars(args)
+
+    pygemony = Pygemony(args.get('username'),
+                        args.get('token'),
+                        args.get('owner'),
+                        args.get('repo'))
     pygemony.run()
