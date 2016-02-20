@@ -16,11 +16,11 @@ class GithubAPIManager:
 
         # Remote repo stuff
         if not owner:
-            self.owner = self.get_owner() 
+            self.owner = self.get_owner().rstrip()
         else:
             self.owner = owner
         if not repo:
-            self.repo = self.get_repo()
+            self.repo = self.get_repo().rstrip()
         else:
             self.repo = repo
         self.curr_repo = self.gh.repository(str(self.owner), str(self.repo))
