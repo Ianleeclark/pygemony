@@ -45,12 +45,12 @@ class Pygemony:
     @staticmethod
     def hash_todo(todo_content, line_number, file_name):
         m = hashlib.md5()
-        m.update('{}-{}-{}'.format(todo_content, line_number, file_name))
+        m.update('{}-{}'.format(todo_content, file_name))
         return str(m.hexdigest())
 
     def parse_for_todo(self, f, file_):
         for i, line in enumerate(f.readlines()):
-            if "TODO" in line:
+            if "TODO" in line and self._starts_with_comment(line):
                 line = self._sanitize_todo_line(line)
                 self.todo_found.append([file_, i, line, self.hash_todo(line, i, file_)])
 
@@ -62,12 +62,14 @@ class Pygemony:
 
     def find_all_files(self, root):
         files_found = []
+
         for roots, dirs, files in walk(root):
             base_dir = roots.split('/')[1]
+
             if base_dir not in self.blacklist:
-                print roots
                 for file_ in self.parse_by_extension(files):
                     files_found.append(path.join(roots, file_))
+
         return files_found
 
     def file_handler(self):
@@ -104,6 +106,21 @@ class Pygemony:
                     'c': LanguageC,
                     'go': LanguageGo}
         langs = [i for i in self.github.get_languages()]
+
         for i in langs:
             self.blacklist.append(lang_map[str(langs[0][0]).lower()]().ignore_dir)
+
         return [lang_map[str(langs[0][0]).lower()]()]
+
+    def _starts_with_comment(self, line):
+        comments = self._create_comment_start_list()
+        for comment in comments:
+            if line.startswith(comment):
+                return True
+
+    def _create_comment_start_list(self):
+        comments = []
+        for lang in self.language:
+            comments.append(lang.single_comment)
+            comments.append(lang.multi_comment[0])
+        return comments
