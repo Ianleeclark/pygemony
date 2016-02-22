@@ -37,12 +37,12 @@ https://help.github.com/articles/creating-an-access-token-for-command-line-use/
 Okay, since you've got yourself a copy of Pygemony and an OAuth token, you're
 ready to roll. Example usage of Pygemony:
 ```
-pygemony.py --username/-u USERNAME --token/-t GITHUB_TOKEN
+pygemony --username USERNAME --token GITHUB_TOKEN
 ```
 
 Whenever I run it, it looks like so:
 ```
-pygemony.py --username GrappigPanda --token $GITHUB_TOKEN
+pygemony --username GrappigPanda --token $GITHUB_TOKEN
 ```
 (I find it nice and easy to set an environmental variable $GITHUB_TOKEN, not
 necessary at all!)
@@ -53,8 +53,8 @@ to open the issues.
 If, however, you want Pygemony to report to somewhere else, you can specify by
 adding additional command-line arguments:
 ```
---owner/-o: The owner of the repo (think GrappigPanda)
---repo/-r: The repo's name (think Pygemony)
+--owner: The owner of the repo (think GrappigPanda)
+--repo: The repo's name (think Pygemony)
 ```
 
 Whenever you inevitably run into bugs because I'm dumb and don't follow best
