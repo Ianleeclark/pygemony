@@ -8,3 +8,11 @@ pyg\__init__.py
 pyg\github.py
 pyg\languages.py
 pyg\utils.py
+
+# Added by ian
+include *.md
+include MANIFEST
+
+# misc
+include LICENSE
+recursive-include unit_tests test_*.py

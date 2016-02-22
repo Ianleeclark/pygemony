@@ -1,1 +1,10 @@
 include README LICENSE
+
+# Added by ian
+include *.md
+include *.txt
+include MANIFEST
+
+# misc
+include LICENSE
+recursive-include unit_tests *.py
