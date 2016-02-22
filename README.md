@@ -73,4 +73,10 @@ project's github page [Pygemony] which I'm more
 than happy to receive help with.
 
 [Pygemony]: http://github.com/GrappigPanda/pygemony
-[download the archive]: https://github.com/GrappigPanda/pygemony/archive/master.zip
+
+### Languages Supported
+C
+C++
+Python (naturally :)
+Javascript
+
