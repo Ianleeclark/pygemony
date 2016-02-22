@@ -37,7 +37,7 @@ https://help.github.com/articles/creating-an-access-token-for-command-line-use/
 Okay, since you've got yourself a copy of Pygemony and an OAuth token, you're
 ready to roll. Example usage of Pygemony:
 ```
-pygemony --username/-u USERNAME --token/-t GITHUB_TOKEN
+pygemony.py --username/-u USERNAME --token/-t GITHUB_TOKEN
 ```
 
 Whenever I run it, it looks like so:
