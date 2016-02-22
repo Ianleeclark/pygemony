@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/GrappigPanda/pygemony.svg?branch=master)](https://travis-ci.org/GrappigPanda/pygemony)
 # Pygemony
 
 If you're anything like me, you're lazy... and then you're forgetful.
