@@ -1,7 +1,6 @@
 import argparse
 
 from pyg.Pygemony import Pygemony
-from pyg.utils import get_git_info
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

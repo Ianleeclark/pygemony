@@ -14,21 +14,53 @@ Moreover, Pygemony won't spam your issues page, as it hashes and saves these
 stored todos into a .pyg-submitted into your git repository.
 
 ### Running pygemony is really simple!
+Naturally, the first step is to get your hands on a copy of it:
 
-All you have to do is [download the archive] (the .zip file) and extract it.
-
-
-On Windows, I'd advise you to go ahead and use 7zip or winrar--whichever you
-prefer.
-
-Then, you need to go into the directory and run:
+Using pip:
 ```python
+pip install pygemony
+```
+
+Cloning from gihtub:
+```
+git clone https://github.com/GrappigPanda/pygemony
+cd pygemony
 python setup.py install
 ```
 
-After that, you're good to go!
+After you've gotten a copy, there's one more thing you need to do: Generate
+a Github OAUTH token.
 
-Then, go ahead and run pygemony.py
+You can read up more about oauth tokens here:
+https://help.github.com/articles/creating-an-access-token-for-command-line-use/
+
+Okay, since you've got yourself a copy of Pygemony and an OAuth token, you're
+ready to roll. Example usage of Pygemony:
+```
+pygemony --username/-u USERNAME --token/-t GITHUB_TOKEN
+```
+
+Whenever I run it, it looks like so:
+```
+pygemony.py --username GrappigPanda --token $GITHUB_TOKEN
+```
+(I find it nice and easy to set an environmental variable $GITHUB_TOKEN, not
+necessary at all!)
+
+Pygemony should take care of all of the extra work after this and detect where
+to open the issues.
+
+If, however, you want Pygemony to report to somewhere else, you can specify by
+adding additional command-line arguments:
+```
+--owner/-o: The owner of the repo (think GrappigPanda)
+--repo/-r: The repo's name (think Pygemony)
+```
+
+Whenever you inevitably run into bugs because I'm dumb and don't follow best
+practices, feel free to open a Github issue and yell and scream at me. But 
+please don't actually yell and scream at me because that's demotivational and 
+no one wants that.
 
 ### LIVE EXAMPLES:
 https://github.com/GrappigPanda/pygemony/issues
