@@ -7,5 +7,6 @@ before_script:
   - virtualenv ../venv
   - source ../venv/bin/activate
   - pip install -r requirements.txt
+  - echo $TEST
 script:
   - nose2
