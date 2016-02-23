@@ -1,7 +1,7 @@
 __author__ = 'Ian'
 
 
-class LanguageCPP:
+class LanguageCPP(object):
     def __init__(self):
         self.single_comment = '//'
         self.multi_comment = ['/*', '*/']
@@ -9,7 +9,7 @@ class LanguageCPP:
         self.ignore_dir = []
 
 
-class LanguageC:
+class LanguageC(object):
     def __init__(self):
         self.single_comment = '//'
         self.multi_comment = ['/*', '*/']
@@ -17,7 +17,7 @@ class LanguageC:
         self.ignore_dir = []
 
 
-class LanguagePython:
+class LanguagePython(object):
     def __init__(self):
         self.single_comment = '#'
         self.multi_comment = ['"""', '"""']
@@ -26,7 +26,7 @@ class LanguagePython:
         self.ignore_dir = []
 
 
-class LanguageJavascript:
+class LanguageJavascript(object):
     def __init__(self):
         self.single_comment = '//'
         self.multi_comment = ['/*', '*/']
@@ -34,7 +34,7 @@ class LanguageJavascript:
         self.ignore_dir = ['node_modules']
         self.ignore_dir = []
 
-class LanguageGo:
+class LanguageGo(object):
     def __init__(self):
         self.single_comment = '//'
         self.multi_comment = ['/*', '*/']
