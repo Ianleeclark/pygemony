@@ -1,4 +1,4 @@
-from fnmatch import filter
+from fnmatch import filter as fn_filter
 from os import walk, path
 import hashlib
 
@@ -7,7 +7,7 @@ from github import GithubAPIManager
 from languages import *
 
 
-class Pygemony:
+class Pygemony(object):
     def __init__(self, user=None, token=None, owner=None, repo=None):
         # todo_found contains a list of the following layout:
         # ['file_path', 'line_number', 'todo_message', 'md5 of todo']
@@ -43,7 +43,7 @@ class Pygemony:
         return lines
 
     @staticmethod
-    def hash_todo(todo_content, line_number, file_name):
+    def hash_todo(todo_content, file_name):
         m = hashlib.md5()
         m.update('{}-{}'.format(todo_content, file_name))
         return str(m.hexdigest())
@@ -57,13 +57,13 @@ class Pygemony:
     def parse_by_extension(self, files):
         for lang in self.language:
             for ext in lang.file_exts:
-                for file_ in filter(files, ext):
+                for file_ in fn_filter(files, ext):
                     yield file_
 
     def find_all_files(self, root):
         files_found = []
 
-        for roots, dirs, files in walk(root):
+        for roots, _, files in walk(root):
             base_dir = roots.split('/')[1]
 
             if base_dir not in self.blacklist:

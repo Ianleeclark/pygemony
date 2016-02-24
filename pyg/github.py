@@ -2,7 +2,7 @@ import github3
 from os import path
 
 
-class GithubAPIManager:
+class GithubAPIManager(object):
     # repo_location = grappigpanda/pygemony.py
     def __init__(self, user, token, owner, repo):
         self.is_authed = False

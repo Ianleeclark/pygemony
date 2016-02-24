@@ -1,11 +1,5 @@
 from mimetypes import guess_type
 
-"""
-Basically this is a file that contains random stuff that we need but
-doesn't really fit with the general scheme of the other files
-"""
-
-
 def get_git_info():
     repo = ''
     with open('.git/config') as f:
