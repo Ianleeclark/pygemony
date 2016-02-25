@@ -52,7 +52,7 @@ class Pygemony(object):
         for i, line in enumerate(f.readlines()):
             if "TODO" in line and self._starts_with_comment(line):
                 line = self._sanitize_todo_line(line)
-                self.todo_found.append([file_, i, line, self.hash_todo(line, i, file_)])
+                self.todo_found.append([file_, i, line, self.hash_todo(line, file_)])
 
     def parse_by_extension(self, files):
         for lang in self.language:

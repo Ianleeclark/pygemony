@@ -20,7 +20,7 @@ def read(fname):
 setup(
     name='pygemony',
     install_requires=read('requirements.txt'),
-    version='0.1.1b',
+    version='0.4.2',
     description=('Parse long-forgotten TODO messages from Github Repos and create Issues to resolve.'),
     license=read("LICENSE"),
     author='Ian Lee Clark',
@@ -28,5 +28,9 @@ setup(
     packages=['pyg'],
     url='https://github.com/GrappigPanda/pygemony',
     classifiers=CLASSIFIERS,
-    scripts=['pygemony.py']
+    entry_points={
+        'console_scripts': [
+            'pygemony = pyg.run:main',
+        ],
+    }
 )

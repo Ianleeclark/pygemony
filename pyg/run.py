@@ -2,7 +2,7 @@ import argparse
 
 from pyg.Pygemony import Pygemony
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--token', required=True)
