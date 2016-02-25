@@ -22,12 +22,6 @@ Using pip:
 pip install pygemony==0.4.2
 ```
 
-Cloning from gihtub:
-```
-git clone https://github.com/GrappigPanda/pygemony
-cd pygemony
-python setup.py install
-```
 
 After you've gotten a copy, there's one more thing you need to do: Generate
 a Github OAUTH token.
