@@ -19,7 +19,7 @@ Naturally, the first step is to get your hands on a copy of it:
 
 Using pip:
 ```python
-pip install pygemony
+pip install pygemony==0.4.2
 ```
 
 Cloning from gihtub:
