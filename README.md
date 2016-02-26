@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/GrappigPanda/pygemony.svg?branch=master)](https://travis-ci.org/GrappigPanda/pygemony) [![Code Health](https://landscape.io/github/GrappigPanda/pygemony/master/landscape.svg?style=flat-square)](https://landscape.io/github/GrappigPanda/pygemony/master)
+[![Build Status](https://travis-ci.org/GrappigPanda/pygemony.svg?branch=master)](https://travis-ci.org/GrappigPanda/pygemony) [![Code Health](https://landscape.io/github/GrappigPanda/pygemony/master/landscape.svg?style=flat-square)](https://landscape.io/github/GrappigPanda/pygemony/master) [![PyPI](https://img.shields.io/pypi/v/nine.svg)](https://pypi.python.org/pypi/pygemony) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://pypi.python.org/pypi/pygemony)
 # Pygemony
 
 If you're anything like me, you're lazy... and then you're forgetful.
