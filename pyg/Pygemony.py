@@ -1,10 +1,12 @@
+from __future__ import print_function
+
 from fnmatch import filter as fn_filter
 from os import walk, path
 import hashlib
 
-from utils import detect_mimetype
-from github import GithubAPIManager
-from languages import *
+from pyg.utils import detect_mimetype
+from pyg.github import GithubAPIManager
+from pyg.languages import *
 
 
 class Pygemony(object):
@@ -45,7 +47,7 @@ class Pygemony(object):
     @staticmethod
     def hash_todo(todo_content, file_name):
         m = hashlib.md5()
-        m.update('{}-{}'.format(todo_content, file_name))
+        m.update('{}-{}'.format(todo_content, file_name).encode('utf-8'))
         return str(m.hexdigest())
 
     def parse_for_todo(self, f, file_):
@@ -84,14 +86,14 @@ class Pygemony(object):
                 if file_type[0].startswith("application") or file_type[0] is None:
                     files_found.remove(file_)
             except (AttributeError, IndexError) as e:
-                print "Failed to open file {} with error of {}".format(file_, e)
+                print("Failed to open file {} with error of {}".format(file_, e))
 
         for file_ in files_found:
             try:
                 with open(file_, 'r') as f:
                     self.parse_for_todo(f, file_)
             except IOError as e:
-                print "Failed to open file {} with error of {}".format(file_, e)
+                print("Failed to open file {} with error of {}".format(file_, e))
 
         return files_found
 
