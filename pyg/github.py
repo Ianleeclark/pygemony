@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import github3
 from os import path
 
@@ -30,7 +32,7 @@ class GithubAPIManager(object):
         try:
             return github3.login(self.user, self.token)
         except github3.models.GitHubError as e:
-            print "Failed to login due to {}".format(e)
+            print("Failed to login due to {}".format(e))
         return None
 
     def _save_submitted_todo(self, issue):
@@ -88,5 +90,5 @@ class GithubAPIManager(object):
     def _pprint(self, issue):
         msg = "Committing to repo: {}"
         msg += "\n\tFile Name: {}:{}\n\tTodo Message:{}"
-        print msg.format(self.repo, issue[0], issue[1], issue[2])
+        print(msg.format(self.repo, issue[0], issue[1], issue[2]))
     
