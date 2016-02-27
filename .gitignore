@@ -5,3 +5,5 @@ build*
 *.swp
 .pypirc
 *.egg-info
+.coverage
+htmlcov/
