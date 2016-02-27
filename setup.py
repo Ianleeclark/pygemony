@@ -19,7 +19,7 @@ def read(fname):
 
 setup(
     name='pygemony',
-    install_requires=read('requirements.txt'),
+    install_requires=read('requirements/all.txt'),
     version='0.4.2',
     description=('Parse long-forgotten TODO messages from Github Repos and create Issues to resolve.'),
     license=read("LICENSE"),
