@@ -1,12 +1,13 @@
 language: python
+cache: pip
 python:
   - "2.6"
   - "2.7"
 
 before_script:
-  - virtualenv ../venv
-  - source ../venv/bin/activate
-  - pip install -r requirements.txt
+  - pip install -r requirements/test.txt
   - echo $TEST
 script:
-  - nose2
+  - nosetests --with-coverage --cover-branches --cover-package pyg
+after_success:
+  - coveralls

@@ -1,0 +1,6 @@
+-r all.txt
+
+mock==1.3.0
+nose==1.3.7
+coverage==4.0.3
+coveralls

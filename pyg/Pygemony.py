@@ -45,7 +45,7 @@ class Pygemony(object):
     @staticmethod
     def hash_todo(todo_content, file_name):
         m = hashlib.md5()
-        m.update('{}-{}'.format(todo_content, file_name))
+        m.update('{0}-{1}'.format(todo_content, file_name))
         return str(m.hexdigest())
 
     def parse_for_todo(self, f, file_):
