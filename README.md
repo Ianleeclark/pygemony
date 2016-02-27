@@ -1,12 +1,6 @@
 [![Build Status](https://travis-ci.org/GrappigPanda/pygemony.svg?branch=master)](https://travis-ci.org/GrappigPanda/pygemony) [![Code Health](https://landscape.io/github/GrappigPanda/pygemony/master/landscape.svg?style=flat-square)](https://landscape.io/github/GrappigPanda/pygemony/master)
-[![PyPI Version](http://badge.kloud51.com/pypi/v/pygemony.svg)](https://pypi.python.org/pypi/pygemony)
-[![PyPI Downloads](http://badge.kloud51.com/pypi/d/pygemony.svg)](https://pypi.python.org/pypi/pygemony)
-[![PyPI Wheel](http://badge.kloud51.com/pypi/w/pygemony.svg)](https://pypi.python.org/pypi/pygemony)
-[![PyPI Status](http://badge.kloud51.com/pypi/s/pygemony.svg)](https://pypi.python.org/pypi/pygemony)
-[![PyPI Format](http://badge.kloud51.com/pypi/f/pygemony.svg)](https://pypi.python.org/pypi/pygemony)
+
 [![PyPI Py Versions](http://badge.kloud51.com/pypi/py_versions/pygemony.svg)](https://pypi.python.org/pypi/pygemony)
-[![PyPI Egg](http://badge.kloud51.com/pypi/e/pygemony.svg)](https://pypi.python.org/pypi/pygemony)
-[![PyPI Implementation](http://badge.kloud51.com/pypi/i/pygemony.svg)](https://pypi.python.org/pypi/pygemony)
 [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://pypi.python.org/pypi/pygemony)
 # Pygemony
 
