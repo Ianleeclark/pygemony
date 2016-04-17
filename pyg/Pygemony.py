@@ -8,6 +8,9 @@ from languages import *
 
 
 class Pygemony(object):
+    """
+    The main driver of pygemony, pulls the seperate pieces together.
+    """
     def __init__(self, user=None, token=None, owner=None, repo=None):
         # todo_found contains a list of the following layout:
         # ['file_path', 'line_number', 'todo_message', 'md5 of todo']
@@ -17,23 +20,14 @@ class Pygemony(object):
         # TODO(ian): Add support for parsing more than one file type
         self.language = self.lookup_language()
 
-    def find_end_comment(self, f):
-        # TODO(ian): Remove this function as we no longer support multiline TODO
-        todo_content = []
-        x = f
-        count = 0
-        for line in x.readlines():
-            todo_content.append(line)
-            if self.language.multi_comment[1] in line:
-                return todo_content
-
-            if count > 20:
-                return None
-
-            todo_content.append(line)
-            count += 1
-
     def _sanitize_todo_line(self, lines):
+        """
+        Strips tab, newline, and comment characters form the TODO line.
+
+        :param str lines: The found line containing a TODO
+        :rtype: str
+        :return: The sanitized TODO line.
+        """
         # We're mainly aiming to remove newlines and tab characters here.
         lines = lines.replace('\n', '')
         while '    ' in lines or '\t' in lines:
@@ -44,23 +38,55 @@ class Pygemony(object):
 
     @staticmethod
     def hash_todo(todo_content, file_name):
+        """
+        Hashes the TODO line with the file name
+
+        :param str todo_content: The line in the file containing TODO
+        :param str file_name: The file name containing the TODO line.
+        :rtype: str
+        :return: The MD5 hash of the `todo_content` and `file_name`
+        """
         m = hashlib.md5()
         m.update('{0}-{1}'.format(todo_content, file_name))
         return str(m.hexdigest())
 
     def parse_for_todo(self, f, file_):
+        """
+        Searches (line-by-line) through a file's content and and looks for
+            lines containing TODO.
+
+        :param file_handle f: The handle to the file that is currently being
+            searched
+        :param str file_: The name of the file currently being searched
+        """
         for i, line in enumerate(f.readlines()):
             if "TODO" in line and self._starts_with_comment(line):
                 line = self._sanitize_todo_line(line)
                 self.todo_found.append([file_, i, line, self.hash_todo(line, file_)])
 
     def parse_by_extension(self, files):
+        """
+        Parses the list of the directory for files with an acceptable
+        extension. The extension is determined by data returned from github on
+        the languages used in the project.
+
+        :param list files: The list of all files in the current repository
+        :rtype: generator(str)
+        :return: Generates a list of acceptable-to-parse files.
+        """
         for lang in self.language:
             for ext in lang.file_exts:
                 for file_ in fn_filter(files, ext):
                     yield file_
 
     def find_all_files(self, root):
+        """
+        Walks the current repository directory and determines viable files
+
+        :param str root: The root directory
+        :rtype: list
+        :return: The list of files found and determined to be viable.
+        """
         files_found = []
 
         for roots, _, files in walk(root):
@@ -73,6 +99,12 @@ class Pygemony(object):
         return files_found
 
     def file_handler(self):
+        """
+        Handles IO with the file
+
+        :rtype: list
+        :return: The list of files found
+        """
         # First we need to remove any non-text files
         files_found = self.find_all_files('./')
         # TODO(ian): filter() over files to parse out by mimetype
@@ -96,10 +128,20 @@ class Pygemony(object):
         return files_found
 
     def run(self):
+        """
+        Starts the process of finding TODOs
+        """
         self.file_handler()
         self.github.commit(self.todo_found)
 
     def lookup_language(self):
+        """
+        Constructs langauge classes based on what is found in github data.
+        
+        :rtype: list
+        :return: A list of language classes that will be found in a github
+            repo.
+        """
         lang_map = {'cpp': LanguageCPP,
                     'python': LanguagePython,
                     'javascript': LanguageJavascript,
@@ -114,12 +156,28 @@ class Pygemony(object):
         return [lang_map[str(langs[0][0]).lower()]()]
 
     def _starts_with_comment(self, line):
+        """
+        Verifies a line (containing the word TODO) starts with a comment, if it
+        does, we deem it to be commit-viable.
+        
+        :param str line: The line that contains "TODO"
+
+        :rtype: bool
+        :return: True if line starts with a comment (is a valid TODO statement)
+        """
         comments = self._create_comment_start_list()
         for comment in comments:
             if line.startswith(comment):
                 return True
 
     def _create_comment_start_list(self):
+        """
+        Create a list of comments from each language class associated with the
+            current repo.
+
+        :rtype: list
+        :return: A list of strings containing all line-start comments.
+        """
         comments = []
         for lang in self.language:
             comments.append(lang.single_comment)
