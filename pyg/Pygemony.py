@@ -104,7 +104,8 @@ class Pygemony(object):
                     'python': LanguagePython,
                     'javascript': LanguageJavascript,
                     'c': LanguageC,
-                    'go': LanguageGo}
+                    'go': LanguageGo,
+                    'erlang': LanguageErlang}
         langs = [i for i in self.github.get_languages()]
 
         for i in langs:

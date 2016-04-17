@@ -41,3 +41,10 @@ class LanguageGo(object):
         self.file_exts = ['*.go']
         self.ignore_dir = []
 
+class LanguageErlang(object):
+    def __init__(self):
+        self.single_comment = '%'
+        self.multi_comment = []
+        self.file_exts = ['*.erl', '*.hrl']
+        self.ignore_dir = []
+
